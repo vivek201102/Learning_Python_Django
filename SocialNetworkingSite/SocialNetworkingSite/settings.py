@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -37,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'karamel',
+    "phonenumber_field",
 ]
 
 MIDDLEWARE = [
@@ -75,10 +78,18 @@ WSGI_APPLICATION = 'SocialNetworkingSite.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'karamel',
+        'USER': 'root',
+        'PASSWORD': '201102',
+        'HOST': 'localhost',
+        'PORT': '3306',
+        'OPTION': {
+            'init_command' : "SET sql_mode = 'STRICT_TRANS_TABLES'"
+        }
     }
 }
+
 
 
 # Password validation
@@ -119,6 +130,8 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = [
     BASE_DIR / "static"
 ]
+
+STATIC_ROOT = os.path.join(BASE_DIR, "assests")
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
