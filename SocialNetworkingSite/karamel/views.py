@@ -45,7 +45,7 @@ def register(request):
     #Add to the database
     userinfo = UserInfo.objects.create(name = name, email = email, mobile = mobile, gender = gender, dob = dob, username = username, password = password)
     userinfo.save()
-    return render(request, "about.html")
+    return render(request, "setup.html", {"username": username})
 
 #Authenticate
 def auth(request):
